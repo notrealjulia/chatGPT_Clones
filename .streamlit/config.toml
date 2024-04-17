@@ -1,0 +1,6 @@
+[theme]
+primaryColor="#ffe600"  # Vibrant yellow for primary elements
+backgroundColor="#333333"  # Dark gray for the background
+secondaryBackgroundColor="#999999"  # A lighter shade of gray for secondary backgrounds
+textColor="#FFFFFF"  # White for text, to stand out against the dark background
+font="sans serif"
