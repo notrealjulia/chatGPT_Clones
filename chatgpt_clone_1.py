@@ -4,7 +4,7 @@ from openai import OpenAI
 
 logo = "icons/ufo.png"
 user_avatar = "icons/chat.png"
-assitant_avatar = "icons/ufo.png"
+assistant_avatar = "icons/ufo.png"
 
 # Creating an instance of the OpenAI client using the API key from the environment variable
 client =  OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
@@ -23,7 +23,7 @@ else:
     st.success("API key found.")
 
 # Create a selectbox to allow the user to choose between GPT-4.5-turbo and GPT-4
-model_options = ["gpt-3.5-turbo", "gpt-4"]
+model_options = ["gpt-3.5-turbo", "gpt-4", "davinci-002"]
 selected_model = st.selectbox("Select Model", model_options)
 
 # Initialize the default model and messages in the Streamlit session state
@@ -41,7 +41,7 @@ if "messages" not in st.session_state:
 
 # Display previous messages with associated avatars
 for message in st.session_state['messages']:
-    with st.chat_message(message['role'], avatar=user_avatar if message['role'] == 'user' else assitant_avatar):
+    with st.chat_message(message['role'], avatar=user_avatar if message['role'] == 'user' else assistant_avatar):
         st.markdown(message['content'])
 
 # Get user input from the chat input box
@@ -54,7 +54,7 @@ if prompt := st.chat_input("type your message here..."):
         st.markdown(prompt)
 
     # Generate a response from the OpenAI model
-    with st.chat_message("assistant", avatar=assitant_avatar):
+    with st.chat_message("assistant", avatar=assistant_avatar):
         stream = client.chat.completions.create(
             model=st.session_state["openai_model"],
             messages=[
